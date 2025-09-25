@@ -1,6 +1,6 @@
 from fastapi import WebSocket
 import redis.asyncio as redis
-import asyncio, json
+import asyncio
 from app.models.pixel import PixelUpdate
 from app.core import config
 
@@ -41,4 +41,4 @@ async def handle_ws(ws: WebSocket):
         print("WebSocket closed:", e)
     finally:
         listener_task.cancel()
-        await pubsub.close()
+        await pubsub.aclose()
